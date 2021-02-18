@@ -24,6 +24,7 @@ const Alerts = ({ error }) => {
     }
   }, [error]);
 
+  // Error when I try to show alert for lead deleted
   // useEffect(() => {
   //   if (message.deleteLead) {
   //     alert.success(message.deleteLead);

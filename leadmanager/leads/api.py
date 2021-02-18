@@ -9,8 +9,15 @@ class LeadViewSet(viewsets.ModelViewSet):
     """ 
         A query that grabs all the leads
     """
-    queryset = Lead.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
     serializer_class = LeadSerializer
+
+    # get leads for user
+    def get_queryset(self):
+        return self.request.user.leads.all
+
+    # allows us to save the lead owner
+    def perform_create(self, serilaizer):
+        serilaizer.save(owner=self.request.user)
